@@ -102,5 +102,17 @@ public class CocheServiceImpl implements CocheService {
 		});
 		return cochesInStock;
 	}
+	@Override
+	public List<CocheDTO> findCochesInPriceRange(Integer minPrice, Integer maxPrice)
+	{
+		List<Coche> coches = cocheDAO.findCarsBtwPriceRange(minPrice, maxPrice);
+		final List<CocheDTO> cochesInRange = new ArrayList<>();
+		coches.forEach(coche -> {
+			final CocheDTO cocheDTO = map(coche);
+			cochesInRange.add(cocheDTO);
+			});
+		return cochesInRange;
+	}
+
 
 }
