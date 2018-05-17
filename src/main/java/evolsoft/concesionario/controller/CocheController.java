@@ -60,6 +60,24 @@ public class CocheController {
 		return cocheService.findCarsAlreadySold();
 	}
 	
+	@RequestMapping(value = "/{id}/sellCar", method = RequestMethod.GET)
+public void sellCar(@PathVariable("id") Integer idCoche,
+@RequestParam(required = true) Integer idCliente,
+@RequestParam(required = true) Integer idVendedor) throws NotFoundExcept {
+cocheService.newSell(idCoche, idCliente, idVendedor);
+}
+@RequestMapping(value = "/inRange", method = RequestMethod.GET)
+public List<CocheDTO> findCochesInPriceRange(@RequestParam(required = true) Integer min,
+@RequestParam(required = true) Integer max) {
+return (min < max) ?
+cocheService.findCochesInPriceRange(min, max) :
+cocheService.findCochesInPriceRange(max, min);
+}
+@RequestMapping(value = "/stock", method = RequestMethod.GET)
+public List<CocheDTO> findCochesInStock() {
+return cocheService.findCochesInStock();
+}
+
 //	@RequestMapping(value = "/{id}/sellCar", method = RequestMethod.GET)
 //	public void sellCar(@PathVariable("id") Integer idCoche, @RequestParam(required = true) Integer idCliente,
 //			@RequestParam(required = true) Integer idVendedor) throws NotFoundExcept {
