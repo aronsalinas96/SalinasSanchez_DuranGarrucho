@@ -38,9 +38,13 @@ public class CocheServiceImpl implements CocheService {
 	@Override
 	public CocheDTO findById(Integer id) throws NotFoundExcept {
 		final Coche coche = Optional.ofNullable(cocheDAO.findOne(id))
-				.orElseThrow(() -> new NotFoundExcept("Coche con id " + id + " no encontrado"));
-Coche soldCar = Optional.ofNullable(cocheDAO.findOne(idCoche)).orElseThrow(() -> new NotFoundExcept());
+			.orElseThrow(() -> new NotFoundExcept("Coche con id " + id + " no encontrado"));
+		Coche soldCar = Optional.ofNullable(cocheDAO.findOne(idCoche)).orElseThrow(() -> new NotFoundExcept());
 		return map(coche);
+	}
+	@Override
+	public void createList(List<CocheDTO> listCocheDto) {
+	listCocheDto.forEach(cocheDTO -> cocheDAO.save(map(cocheDTO)));
 	}
 
 	@Override
