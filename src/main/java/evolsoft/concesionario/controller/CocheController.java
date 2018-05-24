@@ -75,6 +75,10 @@ cocheService.findCochesInPriceRange(max, min);
 public List<CocheDTO> findCochesInStock() {
 return cocheService.findCochesInStock();
 }
+@PostMapping("/insertList")
+public void createList(@RequestBody List<CocheDTO> listCocheDto) {
+cocheService.createList(listCocheDto);
+}
 
 //	@RequestMapping(value = "/{id}/sellCar", method = RequestMethod.GET)
 //	public void sellCar(@PathVariable("id") Integer idCoche, @RequestParam(required = true) Integer idCliente,
