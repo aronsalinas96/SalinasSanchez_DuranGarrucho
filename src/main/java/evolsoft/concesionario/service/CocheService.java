@@ -21,6 +21,8 @@ public interface CocheService {
 	public Coche map(CocheDTO coche);
 
 	public CocheDTO map(Coche coche);
+	
+	void createList(List<CocheDTO> listCocheDto);
 
 	public List<CocheDTO> listCochesSortedByPrice(Integer page, Integer size);
 
@@ -28,5 +30,8 @@ public interface CocheService {
 
 	public List<CocheDTO> findCochesInPriceRange(Integer minPrice, Integer maxPrice);
 	
-	public List<CocheDTO> findCochesInStock();	
+	public List<CocheDTO> findCochesInStock();
+	
+	void newSell(Integer idCoche, Integer idCliente, Integer idVendedor) throws NotFoundExcept;
+	void createList(List<CocheDTO> listCocheDto);	
 }
